@@ -37,7 +37,7 @@ jobs:
         run: terraform plan
         working-directory: ./terraform
       
-      # DISABLED TO AVOID UNINTENTIONAL DEPLOYMENT
+      # TODO: Uncomment the below code to apply the changes
       # - name: Terraform Apply
       #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       #   run: terraform apply --auto-approve
