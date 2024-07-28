@@ -1,1 +1,44 @@
-# All the details for our CI workflow
+# All the details for our CI workflowname: Terraform CI CD Pipeline for Deploying AWS Resources
+name: Terraform CI/CD Pipeline for Deploying AWS Resources
+run-name: ${{ github.actor }} has triggered the pipeline
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+jobs:
+  build-infra:
+    name: terraform-ci-cd
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ./terraform
+
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: ./terraform
+
+      - name: Terraform Plan
+        env:
+          TF_VAR_vpc_cidr: ${{ secrets.TF_VAR_vpc_cidr }}
+          TF_VAR_subnet_cidr: ${{ secrets.TF_VAR_subnet_cidr }}
+        run: terraform plan
+        working-directory: ./terraform
+      
+      - name: Terraform Apply
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: terraform apply --auto-approve
+        working-directory: ./terraform

@@ -1,15 +1,11 @@
-variable "region" {
+# VPC
+variable "vpc_cidr" {
+  description = "VPC CIDR range"
   type        = string
-  default     = "us-east-1"
-  description = "The AWS region"
 }
 
-variable "access_key" {
-  type        = string
-  description = "The AWS access key"
-}
 
-variable "secret_key" {
-  type        = string
-  description = "The AWS secret key"
+variable "subnet_cidr" {
+  description = "List of CIDR ranges for subnets"
+  type        = list(string)
 }
