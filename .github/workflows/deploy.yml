@@ -32,6 +32,9 @@ jobs:
         working-directory: ./terraform
 
       - name: Terraform Plan
+        env:
+          vpc_cidr: ${{ secrets.TF_VAR_vpc_cidr }}
+          subnet_cidr: ${{ secrets.TF_VAR_subnet_cidr }}
         run: terraform plan
         working-directory: ./terraform
       
