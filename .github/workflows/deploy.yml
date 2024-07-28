@@ -6,6 +6,9 @@ on:
   push:
     branches:
       - 'main'
+  pull_request:
+    branches:
+      - 'main'
 
 env:
   AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
@@ -33,7 +36,8 @@ jobs:
       - <<: *terraform-step
         name: Terraform Plan
         run: terraform plan
-
-      - <<: *terraform-step
-        name: Terraform Apply
+      
+      - name: Terraform Apply
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: terraform apply --auto-approve
+        working-directory: ./terraform
