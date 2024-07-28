@@ -1,4 +1,4 @@
-## Virtual Private Cloud (VPC)
+# Virtual Private Cloud (VPC)
 
 - Isolating a network space for us to work upon
 - Can create multiple VPCs in AWS Cloud and in different regions

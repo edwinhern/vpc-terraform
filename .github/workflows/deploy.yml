@@ -37,7 +37,8 @@ jobs:
         run: terraform plan
         working-directory: ./terraform
       
-      - name: Terraform Apply
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: terraform apply --auto-approve
-        working-directory: ./terraform
+      # DISABLED TO AVOID UNINTENTIONAL DEPLOYMENT
+      # - name: Terraform Apply
+      #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      #   run: terraform apply --auto-approve
+      #   working-directory: ./terraform
