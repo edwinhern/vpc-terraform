@@ -11,6 +11,8 @@ on:
 env:
   AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  TF_VAR_vpc_cidr: ${{ secrets.TF_VAR_vpc_cidr }}
+  TF_VAR_subnet_cidr: ${{ secrets.TF_VAR_subnet_cidr }}
 
 jobs:
   build-infra:
@@ -31,10 +33,7 @@ jobs:
         run: terraform validate
         working-directory: ./terraform
 
-      - name: Terraform Plan
-        env:
-          TF_VAR_vpc_cidr: ${{ secrets.TF_VAR_vpc_cidr }}
-          TF_VAR_subnet_cidr: ${{ secrets.TF_VAR_subnet_cidr }}
+      - name: Terraform Plan          
         run: terraform plan
         working-directory: ./terraform
       
