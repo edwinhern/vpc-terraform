@@ -23,7 +23,7 @@ This repository demonstrates how to create and automate a Single Tier VPC in AWS
 
 ## Example Running the App
 
-[Click here to view the example video](./docs/VPC-Terraform-Result.mp4)
+[Click here to view the example video](https://github.com/user-attachments/assets/ac46778a-0bc3-4e3e-81d5-a352863fd6e4)
 
 ### Step-by-Step Guide
 
@@ -60,3 +60,7 @@ This repository demonstrates how to create and automate a Single Tier VPC in AWS
     terraform plan
     terraform apply
     ```
+
+
+
+
