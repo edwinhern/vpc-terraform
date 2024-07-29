@@ -42,9 +42,6 @@ This repository demonstrates how to create and automate a Single Tier VPC in AWS
 - Add the following configuration to terraform.tfvars:
 
     ```bash
-    # AWS Configuration
-    access_key = "ADD YOUR ACCESS_KEY"
-    secret_key = "ADD YOUR SECRET KEY"
     # VPC
     vpc_cidr    = "10.0.0.0/16"
     subnet_cidr = ["10.0.1.0/24", "10.0.2.0/24"]
